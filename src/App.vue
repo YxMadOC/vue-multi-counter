@@ -1,6 +1,5 @@
 <template>
     <div id="app">
-
         <CounterGroup />
     </div>
 </template>

@@ -2,7 +2,7 @@
 
   <div class="counter">
     <button v-on:click="decrease"> - </button>
-    <span> {{ value }} </span>
+      <span> {{ count }} </span>
     <button v-on:click="increase"> + </button>
   </div>
 
@@ -11,18 +11,24 @@
 <script>
 
   export default {
-    name: 'app',
-    data() {
-      return {
-        value: 0
-      }
+      name: 'Counter',
+      model: {
+          prop: "count"
     },
+      props: {
+          count: {
+              default: 0
+          }
+      },
     methods: {
       increase() {
-        this.value ++;
+          this.emitUpdate(this.count + 1);
       },
       decrease() {
-        this.value --;
+          this.emitUpdate(this.count - 1);
+      },
+        emitUpdate(count) {
+            this.$emit("change", count);
       }
     }
 
