@@ -1,11 +1,10 @@
 <template>
-    <span>{{ sum }}</span>
+    <span>{{ this.$store.getters.sum }}</span>
 </template>
 
 <script>
     export default {
-        name: "CounterSum",
-        props: ['sum']
+        name: "CounterSum"
     }
 </script>
 

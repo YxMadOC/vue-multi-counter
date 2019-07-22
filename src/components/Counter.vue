@@ -12,26 +12,27 @@
 
   export default {
       name: 'Counter',
-      model: {
-          prop: "count"
-    },
-      props: {
-          count: {
-              default: 0
-          }
-      },
+      data() {
+        return{
+          count: 0
+        }
+      }
+      ,
     methods: {
       increase() {
-          this.emitUpdate(this.count + 1);
+          this.count ++;
+          this.$store.commit('increment');
       },
       decrease() {
-          this.emitUpdate(this.count - 1);
-      },
-        emitUpdate(count) {
-            this.$emit("change", count);
+          this.count --;
+          this.$store.commit('decrement');
       }
+    },
+    beforeDestroy() {
+        this.$store.commit('handleCounterDestroy', {
+          count: this.count
+        })
     }
-
   }
 </script>
 
